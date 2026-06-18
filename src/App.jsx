@@ -10,12 +10,12 @@ function App() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
   const [bookingConfirmed, setBookingConfirmed] = useState(false)
 
-  // Telugu Movies Data - Medium size collection
+  // Telugu Movies Data - Medium size collection with working images
   const movies = [
     {
       id: 1,
       title: "RRR",
-      image: "https://images.unsplash.com/photo-1534809027769-b00d750a6bac?w=400",
+      image: "https://images.unsplash.com/photo-1534809027769-b00d750a6bac?w=400&h=600&fit=crop",
       rating: 8.8,
       description: "A fictional story of two Indian revolutionaries and their fight against the British Raj.",
       genres: ["Action", "Drama", "Historical"],
@@ -26,7 +26,7 @@ function App() {
     {
       id: 2,
       title: "Baahubali 2",
-      image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400",
+      image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=600&fit=crop",
       rating: 9.0,
       description: "The conclusion to the epic saga of Shivudu and his journey to become the king.",
       genres: ["Action", "Fantasy", "Drama"],
@@ -37,7 +37,7 @@ function App() {
     {
       id: 3,
       title: "Kalki 2898 AD",
-      image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400",
+      image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&h=600&fit=crop",
       rating: 8.5,
       description: "A sci-fi epic set in the future with mythological elements.",
       genres: ["Sci-Fi", "Action", "Adventure"],
@@ -48,7 +48,7 @@ function App() {
     {
       id: 4,
       title: "Salaar",
-      image: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400",
+      image: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&h=600&fit=crop",
       rating: 8.2,
       description: "A story of friendship, betrayal, and power in a fictional city.",
       genres: ["Action", "Thriller", "Drama"],
@@ -59,7 +59,7 @@ function App() {
     {
       id: 5,
       title: "Pushpa",
-      image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400",
+      image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=600&fit=crop",
       rating: 8.1,
       description: "The rise of a daily wage laborer in the red sandalwood smuggling world.",
       genres: ["Action", "Crime", "Drama"],
@@ -69,19 +69,8 @@ function App() {
     },
     {
       id: 6,
-      title: "Hanu-Man",
-      image: "https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400",
-      rating: 8.3,
-      description: "A small-town man discovers a mysterious gem that gives him superpowers.",
-      genres: ["Action", "Fantasy", "Comedy"],
-      duration: "2h 38m",
-      language: "Telugu",
-      year: "2024"
-    },
-    {
-      id: 7,
       title: "Mahanati",
-      image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400",
+      image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=600&fit=crop",
       rating: 8.9,
       description: "The biopic of legendary actress Savitri and her journey in cinema.",
       genres: ["Biography", "Drama", "History"],
@@ -90,9 +79,9 @@ function App() {
       year: "2018"
     },
     {
-      id: 8,
+      id: 7,
       title: "Jersey",
-      image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400",
+      image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&h=600&fit=crop",
       rating: 8.7,
       description: "A failed cricketer's journey to fulfill his dream of playing for India.",
       genres: ["Sports", "Drama", "Inspiration"],
@@ -101,9 +90,9 @@ function App() {
       year: "2019"
     },
     {
-      id: 9,
+      id: 8,
       title: "Ala Vaikunthapurramuloo",
-      image: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?w=400",
+      image: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?w=400&h=600&fit=crop",
       rating: 8.4,
       description: "A man discovers his true identity and the family he never knew.",
       genres: ["Action", "Comedy", "Family"],
@@ -112,20 +101,9 @@ function App() {
       year: "2020"
     },
     {
-      id: 10,
-      title: "Virata Parvam",
-      image: "https://images.unsplash.com/photo-1533104816931-2c4a8f4eafd8?w=400",
-      rating: 7.9,
-      description: "Set in the 1990s, a love story amidst political turmoil and Maoist insurgency.",
-      genres: ["Action", "Romance", "Political"],
-      duration: "2h 42m",
-      language: "Telugu",
-      year: "2022"
-    },
-    {
-      id: 11,
+      id: 9,
       title: "Dasara",
-      image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400",
+      image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=600&fit=crop",
       rating: 8.0,
       description: "A tale of friendship, love, and revenge in a rural village.",
       genres: ["Action", "Drama", "Thriller"],
@@ -134,9 +112,9 @@ function App() {
       year: "2023"
     },
     {
-      id: 12,
+      id: 10,
       title: "Sir",
-      image: "https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=400",
+      image: "https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=400&h=600&fit=crop",
       rating: 8.6,
       description: "A government school teacher's fight for the rights of his students.",
       genres: ["Drama", "Inspiration", "Social"],
@@ -217,7 +195,9 @@ function App() {
           margin: '0 auto',
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center'
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '0.5rem'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <span style={{ fontSize: '1.8rem' }}>🎬</span>
@@ -246,7 +226,7 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <div className="hero-section" style={{
+      <div style={{
         background: 'linear-gradient(135deg, #0f0c29, #302b63, #24243e)',
         padding: '3rem 2rem',
         marginBottom: '2rem',
@@ -303,7 +283,7 @@ function App() {
           </p>
           <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <div>
-              <div style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#ff6b6b' }}>12+</div>
+              <div style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#ff6b6b' }}>10+</div>
               <div style={{ color: '#888', fontSize: '0.9rem' }}>Telugu Movies</div>
             </div>
             <div>
@@ -395,7 +375,7 @@ function App() {
         marginTop: '1rem'
       }}>
         {movies.map(movie => (
-          <div key={movie.id} className="movie-card" onClick={() => handleMovieClick(movie)} style={{
+          <div key={movie.id} onClick={() => handleMovieClick(movie)} style={{
             background: 'linear-gradient(145deg, #1a1a1a, #0d0d0d)',
             borderRadius: '16px',
             overflow: 'hidden',
@@ -504,7 +484,7 @@ function App() {
                   }}>+{movie.genres.length - 2}</span>
                 )}
               </div>
-              <button className="btn-primary" style={{
+              <button style={{
                 width: '100%',
                 padding: '0.7rem',
                 fontSize: '0.9rem',
@@ -525,7 +505,7 @@ function App() {
 
       {/* Booking Modal */}
       {showBooking && selectedMovie && (
-        <div className="modal-overlay" onClick={() => setShowBooking(false)} style={{
+        <div style={{
           position: 'fixed',
           top: 0,
           left: 0,
@@ -537,10 +517,9 @@ function App() {
           alignItems: 'center',
           justifyContent: 'center',
           zIndex: 1000,
-          animation: 'fadeIn 0.3s ease',
           padding: '1rem'
-        }}>
-          <div className="modal-content" onClick={e => e.stopPropagation()} style={{
+        }} onClick={() => setShowBooking(false)}>
+          <div onClick={e => e.stopPropagation()} style={{
             background: 'linear-gradient(145deg, #1a1a1a, #0d0d0d)',
             borderRadius: '20px',
             padding: '2rem',
@@ -549,10 +528,12 @@ function App() {
             maxHeight: '90vh',
             overflowY: 'auto',
             border: '1px solid rgba(255, 255, 255, 0.05)',
-            animation: 'slideUp 0.3s ease'
+            position: 'relative'
           }}>
-            <button className="modal-close" onClick={() => setShowBooking(false)} style={{
-              float: 'right',
+            <button onClick={() => setShowBooking(false)} style={{
+              position: 'absolute',
+              top: '1rem',
+              right: '1rem',
               background: 'none',
               border: 'none',
               color: '#888',
@@ -590,7 +571,7 @@ function App() {
                 {bookingStep === 1 && (
                   <>
                     <h3 style={{ fontSize: '1rem', color: '#888', marginBottom: '0.8rem' }}>Select Showtime</h3>
-                    <div className="showtime-grid" style={{
+                    <div style={{
                       display: 'grid',
                       gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))',
                       gap: '10px',
@@ -599,7 +580,6 @@ function App() {
                       {showtimes.map(time => (
                         <button
                           key={time}
-                          className={`showtime-btn ${selectedTime === time ? 'active' : ''}`}
                           onClick={() => setSelectedTime(time)}
                           style={{
                             background: selectedTime === time ? 'linear-gradient(135deg, #ff6b6b, #ee5a24)' : 'rgba(255, 255, 255, 0.05)',
@@ -618,7 +598,7 @@ function App() {
                     </div>
 
                     <h3 style={{ fontSize: '1rem', color: '#888', margin: '1rem 0 0.8rem' }}>Select Seats</h3>
-                    <div className="seat-grid" style={{
+                    <div style={{
                       display: 'grid',
                       gridTemplateColumns: 'repeat(8, 1fr)',
                       gap: '6px',
@@ -630,10 +610,6 @@ function App() {
                         return (
                           <button
                             key={seat}
-                            className={`seat ${
-                              isBooked ? 'seat-booked' :
-                              isSelected ? 'seat-selected' : 'seat-available'
-                            }`}
                             onClick={() => toggleSeat(seat)}
                             disabled={isBooked}
                             style={{
@@ -673,7 +649,7 @@ function App() {
                       </div>
                     )}
 
-                    <button className="btn-primary" onClick={handleBooking} style={{
+                    <button onClick={handleBooking} style={{
                       width: '100%',
                       padding: '0.8rem',
                       background: 'linear-gradient(135deg, #ff6b6b, #ee5a24)',
@@ -697,7 +673,6 @@ function App() {
                     </h3>
                     <form onSubmit={handleConfirm}>
                       <input
-                        className="input-field"
                         type="text"
                         placeholder="Full Name"
                         value={formData.name}
@@ -711,11 +686,11 @@ function App() {
                           borderRadius: '10px',
                           color: 'white',
                           marginBottom: '1rem',
-                          transition: 'border-color 0.3s ease'
+                          transition: 'border-color 0.3s ease',
+                          outline: 'none'
                         }}
                       />
                       <input
-                        className="input-field"
                         type="email"
                         placeholder="Email Address"
                         value={formData.email}
@@ -729,11 +704,11 @@ function App() {
                           borderRadius: '10px',
                           color: 'white',
                           marginBottom: '1rem',
-                          transition: 'border-color 0.3s ease'
+                          transition: 'border-color 0.3s ease',
+                          outline: 'none'
                         }}
                       />
                       <input
-                        className="input-field"
                         type="tel"
                         placeholder="Phone Number"
                         value={formData.phone}
@@ -747,7 +722,8 @@ function App() {
                           borderRadius: '10px',
                           color: 'white',
                           marginBottom: '1rem',
-                          transition: 'border-color 0.3s ease'
+                          transition: 'border-color 0.3s ease',
+                          outline: 'none'
                         }}
                       />
                       
@@ -782,7 +758,6 @@ function App() {
                       <div style={{ display: 'flex', gap: '1rem' }}>
                         <button 
                           type="button" 
-                          className="btn-secondary" 
                           onClick={() => setBookingStep(1)}
                           style={{
                             flex: 1,
@@ -797,7 +772,7 @@ function App() {
                         >
                           Back
                         </button>
-                        <button type="submit" className="btn-primary" style={{
+                        <button type="submit" style={{
                           flex: 2,
                           padding: '0.8rem',
                           background: 'linear-gradient(135deg, #ff6b6b, #ee5a24)',
