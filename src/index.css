@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
@@ -19,236 +19,102 @@
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  width: 100%;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-/* Movie Card Styles */
-.movie-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.movie-card {
+::-webkit-scrollbar-track {
   background: #1a1a1a;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
 }
 
-.movie-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(229, 9, 20, 0.2);
-  border-color: #e50914;
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff6b6b, #ee5a24);
+  border-radius: 10px;
 }
 
-.movie-poster {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff8a8a, #ff6b2b);
 }
 
-.movie-info {
-  padding: 1.5rem;
-  text-align: left;
+/* Loading Animation */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.7;
+  }
 }
 
-.movie-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+.pulse-animation {
+  animation: pulse 2s ease-in-out infinite;
 }
 
-.movie-rating {
-  color: #fbbf24;
-  font-weight: 600;
+/* Fade In Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Button Styles */
-.btn-primary {
-  background: #e50914;
-  color: white;
-  border: none;
-  padding: 12px 28px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-  margin-top: 1rem;
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
-.btn-primary:hover {
-  background: #ff0a16;
-  transform: scale(1.02);
-}
-
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.08);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-/* Booking Modal */
+/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   animation: fadeIn 0.3s ease;
+  padding: 1rem;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Content */
 .modal-content {
-  background: #1a1a1a;
-  border-radius: 16px;
+  background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+  border-radius: 20px;
   padding: 2rem;
-  max-width: 500px;
-  width: 90%;
+  max-width: 550px;
+  width: 100%;
   max-height: 90vh;
   overflow-y: auto;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   animation: slideUp 0.3s ease;
-}
-
-.modal-close {
-  float: right;
-  background: none;
-  border: none;
-  color: #888;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.modal-close:hover {
-  color: white;
-}
-
-/* Seat Selection */
-.seat-grid {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 8px;
-  margin: 1.5rem 0;
-}
-
-.seat {
-  padding: 10px 0;
-  border-radius: 6px 6px 0 0;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 0.75rem;
-}
-
-.seat-available {
-  background: #2a2a2a;
-  color: #888;
-}
-
-.seat-available:hover {
-  background: #3a3a3a;
-  transform: scale(1.1);
-}
-
-.seat-selected {
-  background: #e50914;
-  color: white;
-  box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
-}
-
-.seat-booked {
-  background: #111;
-  color: #444;
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-/* Showtime buttons */
-.showtime-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 10px;
-  margin: 1rem 0;
-}
-
-.showtime-btn {
-  background: #2a2a2a;
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.showtime-btn:hover {
-  background: #3a3a3a;
-  border-color: #e50914;
-}
-
-.showtime-btn.active {
-  background: #e50914;
-  border-color: #e50914;
-}
-
-/* Input fields */
-.input-field {
-  width: 100%;
-  padding: 12px;
-  background: #2a2a2a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  color: white;
-  margin-bottom: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-.input-field:focus {
-  outline: none;
-  border-color: #e50914;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  position: relative;
 }
 
 @keyframes slideUp {
@@ -262,45 +128,442 @@ h1 {
   }
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+/* Modal Close Button */
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 0.5rem;
+  line-height: 1;
 }
 
-.animate-pulse {
-  animation: pulse 2s ease-in-out infinite;
+.modal-close:hover {
+  color: #fff;
 }
 
-/* Responsive */
+/* Movie Card */
+.movie-card {
+  background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+.movie-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(255, 107, 107, 0.15);
+  border-color: rgba(255, 107, 107, 0.3);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #888;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Input Fields */
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: white;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: #ff6b6b;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.input-field::placeholder {
+  color: #555;
+}
+
+/* Showtime Grid */
+.showtime-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.showtime-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: #888;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+}
+
+.showtime-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 107, 107, 0.3);
+  color: #fff;
+}
+
+.showtime-btn.active {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+/* Seat Grid */
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+
+.seat {
+  padding: 8px 0;
+  border-radius: 6px 6px 0 0;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.seat-available {
+  background: rgba(255, 255, 255, 0.05);
+  color: #666;
+}
+
+.seat-available:hover:not(.seat-booked) {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
+}
+
+.seat-selected {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+  transform: scale(1.05);
+}
+
+.seat-booked {
+  background: #111;
+  color: #444;
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Filter Buttons */
+.filter-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: #888;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background: rgba(255, 107, 107, 0.1);
+  color: #ff6b6b;
+  border-color: rgba(255, 107, 107, 0.3);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  border: none;
+}
+
+/* Tags and Badges */
+.tag {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.tag-telugu {
+  background: rgba(255, 107, 107, 0.15);
+  color: #ff6b6b;
+}
+
+.tag-year {
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffd700;
+}
+
+.tag-genre {
+  background: rgba(255, 255, 255, 0.05);
+  color: #aaa;
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* Rating Badge */
+.rating-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255, 107, 107, 0.9);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  backdrop-filter: blur(5px);
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  padding: 3rem 2rem;
+  margin-bottom: 2rem;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1600');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.05;
+}
+
+/* Navigation */
+.navbar {
+  padding: 1rem 2rem;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Booking Summary */
+.booking-summary {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.booking-summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.booking-summary-item .value {
+  color: #fff;
+}
+
+.booking-summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 1rem;
+}
+
+.booking-summary-total .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff6b6b;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .movie-card img {
+    height: 240px;
+  }
+}
+
 @media (max-width: 768px) {
-  .movie-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+  .movie-card img {
+    height: 200px;
   }
   
-  .movie-poster {
-    height: 250px;
+  .modal-content {
+    padding: 1.5rem;
+    max-width: 95%;
   }
   
   .seat-grid {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(8, 1fr);
+    gap: 4px;
+  }
+  
+  .seat {
+    padding: 6px 0;
+    font-size: 0.55rem;
+  }
+  
+  .showtime-grid {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  }
+  
+  .hero-section h1 {
+    font-size: 1.8rem !important;
+  }
+  
+  .hero-section {
+    padding: 2rem 1rem;
+  }
+  
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+  
+  #root {
+    padding: 0.5rem;
   }
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+@media (max-width: 480px) {
+  .movie-card img {
+    height: 180px;
+  }
+  
+  .seat-grid {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 3px;
+  }
+  
+  .seat {
+    padding: 5px 0;
+    font-size: 0.5rem;
+  }
+  
+  .showtime-grid {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 6px;
+  }
+  
+  .showtime-btn {
+    font-size: 0.75rem;
+    padding: 8px;
+  }
+  
+  .modal-content {
+    padding: 1rem;
+  }
+  
+  .btn-primary {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
 }
 
-::-webkit-scrollbar-track {
-  background: #1a1a1a;
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #0a0a0a;
+  }
 }
 
-::-webkit-scrollbar-thumb {
-  background: #e50914;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #ff0a16;
+/* Light Mode Override */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #1a1a1a;
+    background-color: #ffffff;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  }
+  
+  .movie-card {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .modal-content {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .input-field {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1a1a1a;
+  }
+  
+  .navbar {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom-color: rgba(0, 0, 0, 0.05);
+  }
 }
