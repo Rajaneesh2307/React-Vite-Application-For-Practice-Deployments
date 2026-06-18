@@ -1,14 +1,33 @@
-# React + Vite
+# 🎬 CineBook - Movie Ticket Booking Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and elegant movie ticket booking website built with React + Vite. Browse movies, select showtimes, choose seats, and book tickets seamlessly.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎥 Browse movies with posters, ratings, and details
+- 🕐 Multiple showtime selection
+- 🎫 Interactive seat selection with visual feedback
+- 📝 Booking form with user details
+- 💰 Automatic price calculation
+- ✅ Booking confirmation flow
+- 🎨 Modern dark theme UI
+- 📱 Fully responsive design
 
-## Expanding the ESLint configuration
+## 🚀 Quick Start
 
-# If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
 
-# React-Application-For-Practice-Deployments
+### Installation & Run
+# Clone the repository
+git clone https://github.com/yourusername/movie-ticket-booking.git
+cd movie-ticket-booking
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Open http://localhost:5173 in your browser
