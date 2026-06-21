@@ -9,8 +9,9 @@ function App() {
   const [bookingStep, setBookingStep] = useState(1)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
   const [bookingConfirmed, setBookingConfirmed] = useState(false)
+  const [activeFilter, setActiveFilter] = useState('All')
 
-  // 100 Telugu Movies Data - Complete details without images
+  // 100 Telugu Movies Data
   const movies = [
     // Blockbusters 1-20
     {
@@ -23,8 +24,7 @@ function App() {
       language: "Telugu",
       year: "2022",
       director: "S. S. Rajamouli",
-      cast: ["Jr. NTR", "Ram Charan", "Alia Bhatt"],
-      imdb: "8.8"
+      cast: ["Jr. NTR", "Ram Charan", "Alia Bhatt"]
     },
     {
       id: 2,
@@ -36,8 +36,7 @@ function App() {
       language: "Telugu",
       year: "2017",
       director: "S. S. Rajamouli",
-      cast: ["Prabhas", "Rana Daggubati", "Anushka Shetty"],
-      imdb: "9.0"
+      cast: ["Prabhas", "Rana Daggubati", "Anushka Shetty"]
     },
     {
       id: 3,
@@ -49,8 +48,7 @@ function App() {
       language: "Telugu",
       year: "2024",
       director: "Nag Ashwin",
-      cast: ["Prabhas", "Amitabh Bachchan", "Deepika Padukone"],
-      imdb: "8.5"
+      cast: ["Prabhas", "Amitabh Bachchan", "Deepika Padukone"]
     },
     {
       id: 4,
@@ -62,8 +60,7 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "Prashanth Neel",
-      cast: ["Prabhas", "Prithviraj Sukumaran", "Shruti Haasan"],
-      imdb: "8.2"
+      cast: ["Prabhas", "Prithviraj Sukumaran", "Shruti Haasan"]
     },
     {
       id: 5,
@@ -75,8 +72,7 @@ function App() {
       language: "Telugu",
       year: "2021",
       director: "Sukumar",
-      cast: ["Allu Arjun", "Rashmika Mandanna", "Fahadh Faasil"],
-      imdb: "8.1"
+      cast: ["Allu Arjun", "Rashmika Mandanna", "Fahadh Faasil"]
     },
     {
       id: 6,
@@ -88,8 +84,7 @@ function App() {
       language: "Telugu",
       year: "2018",
       director: "Nag Ashwin",
-      cast: ["Keerthy Suresh", "Dulquer Salmaan", "Vijay Deverakonda"],
-      imdb: "8.9"
+      cast: ["Keerthy Suresh", "Dulquer Salmaan", "Vijay Deverakonda"]
     },
     {
       id: 7,
@@ -101,8 +96,7 @@ function App() {
       language: "Telugu",
       year: "2019",
       director: "Gowtam Tinnanuri",
-      cast: ["Nani", "Shraddha Srinath", "Sathyaraj"],
-      imdb: "8.7"
+      cast: ["Nani", "Shraddha Srinath", "Sathyaraj"]
     },
     {
       id: 8,
@@ -114,8 +108,7 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "Venu Yeldandi",
-      cast: ["Dhanush", "Samyuktha", "Sai Kumar"],
-      imdb: "8.6"
+      cast: ["Dhanush", "Samyuktha", "Sai Kumar"]
     },
     {
       id: 9,
@@ -127,8 +120,7 @@ function App() {
       language: "Telugu",
       year: "2020",
       director: "Trivikram Srinivas",
-      cast: ["Allu Arjun", "Pooja Hegde", "Tabu"],
-      imdb: "8.4"
+      cast: ["Allu Arjun", "Pooja Hegde", "Tabu"]
     },
     {
       id: 10,
@@ -140,8 +132,7 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "Srikanth Odela",
-      cast: ["Nani", "Keerthy Suresh", "Dheekshith Shetty"],
-      imdb: "8.0"
+      cast: ["Nani", "Keerthy Suresh", "Dheekshith Shetty"]
     },
     {
       id: 11,
@@ -153,8 +144,7 @@ function App() {
       language: "Telugu",
       year: "2015",
       director: "S. S. Rajamouli",
-      cast: ["Prabhas", "Rana Daggubati", "Anushka Shetty"],
-      imdb: "8.8"
+      cast: ["Prabhas", "Rana Daggubati", "Anushka Shetty"]
     },
     {
       id: 12,
@@ -166,8 +156,7 @@ function App() {
       language: "Telugu",
       year: "2017",
       director: "Sandeep Reddy Vanga",
-      cast: ["Vijay Deverakonda", "Shalini Pandey", "Jia Sharma"],
-      imdb: "8.4"
+      cast: ["Vijay Deverakonda", "Shalini Pandey", "Jia Sharma"]
     },
     {
       id: 13,
@@ -179,8 +168,7 @@ function App() {
       language: "Telugu",
       year: "2018",
       director: "Sukumar",
-      cast: ["Ram Charan", "Samantha Ruth Prabhu", "Aadhi"],
-      imdb: "8.7"
+      cast: ["Ram Charan", "Samantha Ruth Prabhu", "Aadhi"]
     },
     {
       id: 14,
@@ -192,8 +180,7 @@ function App() {
       language: "Telugu",
       year: "2018",
       director: "Parasuram",
-      cast: ["Vijay Deverakonda", "Rashmika Mandanna", "Subbaraju"],
-      imdb: "8.2"
+      cast: ["Vijay Deverakonda", "Rashmika Mandanna", "Subbaraju"]
     },
     {
       id: 15,
@@ -205,8 +192,7 @@ function App() {
       language: "Telugu",
       year: "2019",
       director: "Vamshi Paidipally",
-      cast: ["Mahesh Babu", "Pooja Hegde", "Allari Naresh"],
-      imdb: "7.8"
+      cast: ["Mahesh Babu", "Pooja Hegde", "Allari Naresh"]
     },
     {
       id: 16,
@@ -218,8 +204,7 @@ function App() {
       language: "Telugu",
       year: "2019",
       director: "Surender Reddy",
-      cast: ["Chiranjeevi", "Amitabh Bachchan", "Sudeep"],
-      imdb: "7.9"
+      cast: ["Chiranjeevi", "Amitabh Bachchan", "Sudeep"]
     },
     {
       id: 17,
@@ -231,8 +216,7 @@ function App() {
       language: "Telugu",
       year: "2019",
       director: "Bharat Kamma",
-      cast: ["Vijay Deverakonda", "Rashmika Mandanna", "Shruti Ramachandran"],
-      imdb: "7.6"
+      cast: ["Vijay Deverakonda", "Rashmika Mandanna", "Shruti Ramachandran"]
     },
     {
       id: 18,
@@ -244,8 +228,7 @@ function App() {
       language: "Telugu",
       year: "2020",
       director: "Anil Ravipudi",
-      cast: ["Mahesh Babu", "Rashmika Mandanna", "Vijayashanti"],
-      imdb: "7.5"
+      cast: ["Mahesh Babu", "Rashmika Mandanna", "Vijayashanti"]
     },
     {
       id: 19,
@@ -257,8 +240,7 @@ function App() {
       language: "Telugu",
       year: "2022",
       director: "Saagar K Chandra",
-      cast: ["Pawan Kalyan", "Rana Daggubati", "Nithya Menen"],
-      imdb: "7.7"
+      cast: ["Pawan Kalyan", "Rana Daggubati", "Nithya Menen"]
     },
     {
       id: 20,
@@ -270,8 +252,7 @@ function App() {
       language: "Telugu",
       year: "2017",
       director: "Sekhar Kammula",
-      cast: ["Varun Tej", "Sai Pallavi", "Raja Chembolu"],
-      imdb: "8.3"
+      cast: ["Varun Tej", "Sai Pallavi", "Raja Chembolu"]
     },
     // 21-40
     {
@@ -284,8 +265,7 @@ function App() {
       language: "Telugu",
       year: "2018",
       director: "Sashi Kiran Tikka",
-      cast: ["Adivi Sesh", "Sobhita Dhulipala", "Prakash Raj"],
-      imdb: "8.1"
+      cast: ["Adivi Sesh", "Sobhita Dhulipala", "Prakash Raj"]
     },
     {
       id: 22,
@@ -297,8 +277,7 @@ function App() {
       language: "Telugu",
       year: "2018",
       director: "Prashanth Neel",
-      cast: ["Yash", "Srinidhi Shetty", "Anant Nag"],
-      imdb: "8.6"
+      cast: ["Yash", "Srinidhi Shetty", "Anant Nag"]
     },
     {
       id: 23,
@@ -310,8 +289,7 @@ function App() {
       language: "Telugu",
       year: "2022",
       director: "Prashanth Neel",
-      cast: ["Yash", "Srinidhi Shetty", "Sanjay Dutt"],
-      imdb: "8.7"
+      cast: ["Yash", "Srinidhi Shetty", "Sanjay Dutt"]
     },
     {
       id: 24,
@@ -323,8 +301,7 @@ function App() {
       language: "Telugu",
       year: "2022",
       director: "Lokesh Kanagaraj",
-      cast: ["Kamal Haasan", "Vijay Sethupathi", "Fahadh Faasil"],
-      imdb: "8.4"
+      cast: ["Kamal Haasan", "Vijay Sethupathi", "Fahadh Faasil"]
     },
     {
       id: 25,
@@ -336,8 +313,7 @@ function App() {
       language: "Telugu",
       year: "2022",
       director: "Mani Ratnam",
-      cast: ["Vikram", "Aishwarya Rai", "Jayam Ravi"],
-      imdb: "8.3"
+      cast: ["Vikram", "Aishwarya Rai", "Jayam Ravi"]
     },
     {
       id: 26,
@@ -349,8 +325,7 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "Mani Ratnam",
-      cast: ["Vikram", "Aishwarya Rai", "Jayam Ravi"],
-      imdb: "8.2"
+      cast: ["Vikram", "Aishwarya Rai", "Jayam Ravi"]
     },
     {
       id: 27,
@@ -362,8 +337,7 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "Lokesh Kanagaraj",
-      cast: ["Vijay", "Trisha", "Sanjay Dutt"],
-      imdb: "7.9"
+      cast: ["Vijay", "Trisha", "Sanjay Dutt"]
     },
     {
       id: 28,
@@ -375,8 +349,7 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "Atlee",
-      cast: ["Shah Rukh Khan", "Nayanthara", "Vijay Sethupathi"],
-      imdb: "8.0"
+      cast: ["Shah Rukh Khan", "Nayanthara", "Vijay Sethupathi"]
     },
     {
       id: 29,
@@ -388,8 +361,7 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "Sandeep Reddy Vanga",
-      cast: ["Ranbir Kapoor", "Rashmika Mandanna", "Anil Kapoor"],
-      imdb: "7.8"
+      cast: ["Ranbir Kapoor", "Rashmika Mandanna", "Anil Kapoor"]
     },
     {
       id: 30,
@@ -401,9 +373,9 @@ function App() {
       language: "Telugu",
       year: "2024",
       director: "Shankar",
-      cast: ["Ram Charan", "Kiara Advani", "Anjali"],
-      imdb: "7.5"
+      cast: ["Ram Charan", "Kiara Advani", "Anjali"]
     },
+    // 31-50
     {
       id: 31,
       title: "Agent",
@@ -414,8 +386,7 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "Surender Reddy",
-      cast: ["Akhil Akkineni", "Sakshi Vaidya", "Suresh Oberoi"],
-      imdb: "7.2"
+      cast: ["Akhil Akkineni", "Sakshi Vaidya", "Suresh Oberoi"]
     },
     {
       id: 32,
@@ -427,8 +398,7 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "Gopichand Malineni",
-      cast: ["Nandamuri Balakrishna", "Shruti Haasan", "Duniya Vijay"],
-      imdb: "7.8"
+      cast: ["Nandamuri Balakrishna", "Shruti Haasan", "Duniya Vijay"]
     },
     {
       id: 33,
@@ -440,8 +410,7 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "K. S. Ravindra",
-      cast: ["Chiranjeevi", "Ravi Teja", "Shruti Haasan"],
-      imdb: "7.6"
+      cast: ["Chiranjeevi", "Ravi Teja", "Shruti Haasan"]
     },
     {
       id: 34,
@@ -453,8 +422,7 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "Murali Karthikeya",
-      cast: ["Kiran Abbavaram", "Saahas", "Sindhuri"],
-      imdb: "7.4"
+      cast: ["Kiran Abbavaram", "Saahas", "Sindhuri"]
     },
     {
       id: 35,
@@ -466,8 +434,7 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "Sudheer Varma",
-      cast: ["Ravi Teja", "Sushanth", "Megha Akash"],
-      imdb: "7.3"
+      cast: ["Ravi Teja", "Sushanth", "Megha Akash"]
     },
     {
       id: 36,
@@ -479,8 +446,7 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "Karthik Dandu",
-      cast: ["Sai Dharam Tej", "Samyuktha", "Sunil"],
-      imdb: "7.9"
+      cast: ["Sai Dharam Tej", "Samyuktha", "Sunil"]
     },
     {
       id: 37,
@@ -492,8 +458,7 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "Venkat Prabhu",
-      cast: ["Naga Chaitanya", "Krithi Shetty", "Arvind Swamy"],
-      imdb: "7.1"
+      cast: ["Naga Chaitanya", "Krithi Shetty", "Arvind Swamy"]
     },
     {
       id: 38,
@@ -505,8 +470,7 @@ function App() {
       language: "Telugu",
       year: "2022",
       director: "Trinadha Rao Nakkina",
-      cast: ["Ravi Teja", "Sreeleela", "Jayaram"],
-      imdb: "7.5"
+      cast: ["Ravi Teja", "Sreeleela", "Jayaram"]
     },
     {
       id: 39,
@@ -518,8 +482,7 @@ function App() {
       language: "Telugu",
       year: "2022",
       director: "Kiran Korrapati",
-      cast: ["Varun Tej", "Upendra", "Saiee Manjrekar"],
-      imdb: "7.0"
+      cast: ["Varun Tej", "Upendra", "Saiee Manjrekar"]
     },
     {
       id: 40,
@@ -531,8 +494,7 @@ function App() {
       language: "Telugu",
       year: "2022",
       director: "Koratala Siva",
-      cast: ["Chiranjeevi", "Ram Charan", "Pooja Hegde"],
-      imdb: "6.8"
+      cast: ["Chiranjeevi", "Ram Charan", "Pooja Hegde"]
     },
     // 41-60
     {
@@ -545,8 +507,7 @@ function App() {
       language: "Telugu",
       year: "2021",
       director: "Kishore Tirumala",
-      cast: ["Ram Pothineni", "Nivetha Pethuraj", "Malavika Sharma"],
-      imdb: "7.2"
+      cast: ["Ram Pothineni", "Nivetha Pethuraj", "Malavika Sharma"]
     },
     {
       id: 42,
@@ -558,8 +519,7 @@ function App() {
       language: "Telugu",
       year: "2021",
       director: "Venu Sriram",
-      cast: ["Pawan Kalyan", "Nivetha Thomas", "Anjali"],
-      imdb: "8.0"
+      cast: ["Pawan Kalyan", "Nivetha Thomas", "Anjali"]
     },
     {
       id: 43,
@@ -571,8 +531,7 @@ function App() {
       language: "Telugu",
       year: "2021",
       director: "Gopichand Malineni",
-      cast: ["Ravi Teja", "Shruti Haasan", "Varalaxmi Sarathkumar"],
-      imdb: "7.8"
+      cast: ["Ravi Teja", "Shruti Haasan", "Varalaxmi Sarathkumar"]
     },
     {
       id: 44,
@@ -584,8 +543,7 @@ function App() {
       language: "Telugu",
       year: "2021",
       director: "Buchi Babu Sana",
-      cast: ["Panja Vaisshnav Tej", "Krithi Shetty", "Vijay Sethupathi"],
-      imdb: "8.1"
+      cast: ["Panja Vaisshnav Tej", "Krithi Shetty", "Vijay Sethupathi"]
     },
     {
       id: 45,
@@ -597,8 +555,7 @@ function App() {
       language: "Telugu",
       year: "2020",
       director: "Karuna Kumar",
-      cast: ["Rakshith Gowda", "Siri Vennela", "Naga Mahesh"],
-      imdb: "8.3"
+      cast: ["Rakshith Gowda", "Siri Vennela", "Naga Mahesh"]
     },
     {
       id: 46,
@@ -610,8 +567,7 @@ function App() {
       language: "Telugu",
       year: "2020",
       director: "Sandeep Raj",
-      cast: ["Suhas", "Chandini Chowdary", "Sunil"],
-      imdb: "8.2"
+      cast: ["Suhas", "Chandini Chowdary", "Sunil"]
     },
     {
       id: 47,
@@ -623,8 +579,7 @@ function App() {
       language: "Telugu",
       year: "2020",
       director: "Venkatesh Maha",
-      cast: ["Satyadev Kancharana", "Suhasini", "Naresh"],
-      imdb: "7.9"
+      cast: ["Satyadev Kancharana", "Suhasini", "Naresh"]
     },
     {
       id: 48,
@@ -636,8 +591,7 @@ function App() {
       language: "Telugu",
       year: "2020",
       director: "Venky Kudumula",
-      cast: ["Naga Chaitanya", "Rashmika Mandanna", "Sampath Raj"],
-      imdb: "7.6"
+      cast: ["Naga Chaitanya", "Rashmika Mandanna", "Sampath Raj"]
     },
     {
       id: 49,
@@ -649,8 +603,7 @@ function App() {
       language: "Telugu",
       year: "2020",
       director: "Kranthi Madhav",
-      cast: ["Vijay Deverakonda", "Raashi Khanna", "Aishwarya Rajesh"],
-      imdb: "7.4"
+      cast: ["Vijay Deverakonda", "Raashi Khanna", "Aishwarya Rajesh"]
     },
     {
       id: 50,
@@ -662,8 +615,7 @@ function App() {
       language: "Telugu",
       year: "2020",
       director: "Sesh",
-      cast: ["Sumanth", "Vennela Kishore", "Rashmi Gautam"],
-      imdb: "7.3"
+      cast: ["Sumanth", "Vennela Kishore", "Rashmi Gautam"]
     },
     // 51-70
     {
@@ -676,8 +628,7 @@ function App() {
       language: "Telugu",
       year: "2021",
       director: "Sekhar Kammula",
-      cast: ["Naga Chaitanya", "Sai Pallavi", "Rajeev Kanakala"],
-      imdb: "8.2"
+      cast: ["Naga Chaitanya", "Sai Pallavi", "Rajeev Kanakala"]
     },
     {
       id: 52,
@@ -689,116 +640,10 @@ function App() {
       language: "Telugu",
       year: "2021",
       director: "Boyapati Srinu",
-      cast: ["Nandamuri Balakrishna", "Pragya Jaiswal", "Srikanth"],
-      imdb: "8.0"
+      cast: ["Nandamuri Balakrishna", "Pragya Jaiswal", "Srikanth"]
     },
     {
       id: 53,
-      title: "Alludu Adhurs",
-      rating: 7.5,
-      description: "A young man's comedy-filled journey to win his love.",
-      genres: ["Comedy", "Romance", "Family"],
-      duration: "2h 20m",
-      language: "Telugu",
-      year: "2021",
-      director: "Santosh Srinivas",
-      cast: ["Bellamkonda Sreenivas", "Nabha Natesh", "Anu Emmanuel"],
-      imdb: "7.5"
-    },
-    {
-      id: 54,
-      title: "Naa Saami Ranga",
-      rating: 7.4,
-      description: "A small-town man's journey to protect his honor.",
-      genres: ["Action", "Drama", "Romance"],
-      duration: "2h 25m",
-      language: "Telugu",
-      year: "2024",
-      director: "Mahesh Reddy",
-      cast: ["Nandamuri Balakrishna", "Kajal Aggarwal", "Daggubati Venkatesh"],
-      imdb: "7.4"
-    },
-    {
-      id: 55,
-      title: "Guntur Kaaram",
-      rating: 7.8,
-      description: "A family drama with political undertones.",
-      genres: ["Action", "Drama", "Political"],
-      duration: "2h 40m",
-      language: "Telugu",
-      year: "2024",
-      director: "Trivikram Srinivas",
-      cast: ["Mahesh Babu", "Sreeleela", "Meenakshi Chaudhary"],
-      imdb: "7.8"
-    },
-    {
-      id: 56,
-      title: "Tillu Square",
-      rating: 7.3,
-      description: "A comedy of errors with a confused young man.",
-      genres: ["Comedy", "Romance", "Thriller"],
-      duration: "2h 10m",
-      language: "Telugu",
-      year: "2024",
-      director: "Mallik Ram",
-      cast: ["Siddhu Jonnalagadda", "Anupama Parameswaran", "Murali Sharma"],
-      imdb: "7.3"
-    },
-    {
-      id: 57,
-      title: "Siren",
-      rating: 7.6,
-      description: "A thriller about a serial killer's reign of terror.",
-      genres: ["Thriller", "Crime", "Mystery"],
-      duration: "2h 25m",
-      language: "Telugu",
-      year: "2024",
-      director: "Prashanth",
-      cast: ["Venky", "Rashmika Mandanna", "Naveen Chandra"],
-      imdb: "7.6"
-    },
-    {
-      id: 58,
-      title: "Bhaje Vaayu Vega",
-      rating: 7.2,
-      description: "An action-packed adventure of a misunderstood man.",
-      genres: ["Action", "Adventure", "Drama"],
-      duration: "2h 20m",
-      language: "Telugu",
-      year: "2024",
-      director: "Aravind",
-      cast: ["Saipallavi", "Naga Chaitanya", "Suman"],
-      imdb: "7.2"
-    },
-    {
-      id: 59,
-      title: "Rudrangi",
-      rating: 7.7,
-      description: "A period drama set in medieval India.",
-      genres: ["Historical", "Action", "Drama"],
-      duration: "2h 40m",
-      language: "Telugu",
-      year: "2024",
-      director: "Vijay",
-      cast: ["Nani", "Samantha", "Prakash Raj"],
-      imdb: "7.7"
-    },
-    {
-      id: 60,
-      title: "Paagal",
-      rating: 7.1,
-      description: "A love story of a man with unique perspectives on life.",
-      genres: ["Romance", "Comedy", "Drama"],
-      duration: "2h 20m",
-      language: "Telugu",
-      year: "2021",
-      director: "Naresh Kuppili",
-      cast: ["Vishwak Sen", "Nivetha Pethuraj", "Simran"],
-      imdb: "7.1"
-    },
-    // 61-80
-    {
-      id: 61,
       title: "Hit: The First Case",
       rating: 8.0,
       description: "A police officer investigates a missing person case.",
@@ -807,11 +652,10 @@ function App() {
       language: "Telugu",
       year: "2020",
       director: "Sailesh Kolanu",
-      cast: ["Vishwak Sen", "Ruhani Sharma", "Murali Sharma"],
-      imdb: "8.0"
+      cast: ["Vishwak Sen", "Ruhani Sharma", "Murali Sharma"]
     },
     {
-      id: 62,
+      id: 54,
       title: "Hit 2",
       rating: 7.9,
       description: "A police officer investigates a new criminal case.",
@@ -820,11 +664,10 @@ function App() {
       language: "Telugu",
       year: "2022",
       director: "Sailesh Kolanu",
-      cast: ["Adivi Sesh", "Meenakshi Chaudhary", "Rao Ramesh"],
-      imdb: "7.9"
+      cast: ["Adivi Sesh", "Meenakshi Chaudhary", "Rao Ramesh"]
     },
     {
-      id: 63,
+      id: 55,
       title: "Major",
       rating: 8.5,
       description: "The life story of Major Sandeep Unnikrishnan.",
@@ -833,37 +676,10 @@ function App() {
       language: "Telugu",
       year: "2022",
       director: "Sashi Kiran Tikka",
-      cast: ["Adivi Sesh", "Sobhita Dhulipala", "Saiee Manjrekar"],
-      imdb: "8.5"
+      cast: ["Adivi Sesh", "Sobhita Dhulipala", "Saiee Manjrekar"]
     },
     {
-      id: 64,
-      title: "Bimbisara",
-      rating: 7.8,
-      description: "A ruler's journey through time and redemption.",
-      genres: ["Action", "Fantasy", "Drama"],
-      duration: "2h 35m",
-      language: "Telugu",
-      year: "2022",
-      director: "Mallidi Vashist",
-      cast: ["Nandamuri Kalyan Ram", "Catherine Tresa", "Samuthirakani"],
-      imdb: "7.8"
-    },
-    {
-      id: 65,
-      title: "Liger",
-      rating: 6.5,
-      description: "A martial arts drama about a fighter's journey.",
-      genres: ["Action", "Sports", "Drama"],
-      duration: "2h 20m",
-      language: "Telugu",
-      year: "2022",
-      director: "Puri Jagannadh",
-      cast: ["Vijay Deverakonda", "Ananya Panday", "Ramya Krishnan"],
-      imdb: "6.5"
-    },
-    {
-      id: 66,
+      id: 56,
       title: "Shyam Singha Roy",
       rating: 8.3,
       description: "A filmmaker discovers his past life connection.",
@@ -872,11 +688,10 @@ function App() {
       language: "Telugu",
       year: "2021",
       director: "Rahul Sankrityan",
-      cast: ["Nani", "Sai Pallavi", "Krithi Shetty"],
-      imdb: "8.3"
+      cast: ["Nani", "Sai Pallavi", "Krithi Shetty"]
     },
     {
-      id: 67,
+      id: 57,
       title: "Sreekaram",
       rating: 7.6,
       description: "A man returns to his village to promote farming.",
@@ -885,24 +700,10 @@ function App() {
       language: "Telugu",
       year: "2021",
       director: "Kishore B.",
-      cast: ["Sharwanand", "Priyanka Arul Mohan", "Rao Ramesh"],
-      imdb: "7.6"
+      cast: ["Sharwanand", "Priyanka Arul Mohan", "Rao Ramesh"]
     },
     {
-      id: 68,
-      title: "Gaali Sampath",
-      rating: 7.4,
-      description: "A comedy about a common man's extraordinary journey.",
-      genres: ["Comedy", "Drama", "Family"],
-      duration: "2h 15m",
-      language: "Telugu",
-      year: "2021",
-      director: "Anand Ranga",
-      cast: ["Sumanth", "Nabha Natesh", "Tanusree Dutta"],
-      imdb: "7.4"
-    },
-    {
-      id: 69,
+      id: 58,
       title: "Konda Polam",
       rating: 7.7,
       description: "A survival drama set in a forest.",
@@ -911,11 +712,156 @@ function App() {
       language: "Telugu",
       year: "2021",
       director: "Krish Jagarlamudi",
-      cast: ["Panja Vaisshnav Tej", "Saiyami Kher", "Rao Ramesh"],
-      imdb: "7.7"
+      cast: ["Panja Vaisshnav Tej", "Saiyami Kher", "Rao Ramesh"]
+    },
+    {
+      id: 59,
+      title: "Rang De",
+      rating: 7.8,
+      description: "A young man's journey to find his missing friend.",
+      genres: ["Action", "Drama", "Thriller"],
+      duration: "2h 25m",
+      language: "Telugu",
+      year: "2021",
+      director: "Venky Atluri",
+      cast: ["Nithiin", "Keerthy Suresh", "Vennela Kishore"]
+    },
+    {
+      id: 60,
+      title: "Yashoda",
+      rating: 7.8,
+      description: "A woman's fight for justice in a fertility clinic.",
+      genres: ["Thriller", "Crime", "Drama"],
+      duration: "2h 30m",
+      language: "Telugu",
+      year: "2022",
+      director: "Hari Shankar",
+      cast: ["Samantha Ruth Prabhu", "Unni Mukundan", "Rao Ramesh"]
+    },
+    // 61-80
+    {
+      id: 61,
+      title: "Sitaram",
+      rating: 7.9,
+      description: "A love story set in the 1980s.",
+      genres: ["Romance", "Drama", "Family"],
+      duration: "2h 30m",
+      language: "Telugu",
+      year: "2022",
+      director: "Vijay",
+      cast: ["Dulquer Salmaan", "Mrunal Thakur", "Rashmika Mandanna"]
+    },
+    {
+      id: 62,
+      title: "Arya 2",
+      rating: 7.7,
+      description: "A story of friendship, love, and jealousy.",
+      genres: ["Romance", "Drama", "Comedy"],
+      duration: "2h 40m",
+      language: "Telugu",
+      year: "2009",
+      director: "Sukumar",
+      cast: ["Allu Arjun", "Navdeep", "Kajal Aggarwal"]
+    },
+    {
+      id: 63,
+      title: "Happy Days",
+      rating: 8.2,
+      description: "A college friendship drama with humor and emotions.",
+      genres: ["Comedy", "Drama", "Romance"],
+      duration: "2h 40m",
+      language: "Telugu",
+      year: "2007",
+      director: "Sekhar Kammula",
+      cast: ["Varun Sandesh", "Tamannaah", "Nikhil"]
+    },
+    {
+      id: 64,
+      title: "Gabbar Singh",
+      rating: 8.1,
+      description: "A police officer's fight against a corrupt politician.",
+      genres: ["Action", "Comedy", "Drama"],
+      duration: "2h 35m",
+      language: "Telugu",
+      year: "2012",
+      director: "Harish Shankar",
+      cast: ["Pawan Kalyan", "Shruti Haasan", "Abhimanyu Singh"]
+    },
+    {
+      id: 65,
+      title: "Athadu",
+      rating: 8.4,
+      description: "A hired killer's journey to find his true identity.",
+      genres: ["Action", "Thriller", "Drama"],
+      duration: "2h 50m",
+      language: "Telugu",
+      year: "2005",
+      director: "Trivikram Srinivas",
+      cast: ["Mahesh Babu", "Trisha", "Prakash Raj"]
+    },
+    {
+      id: 66,
+      title: "Okkadu",
+      rating: 8.3,
+      description: "A kabaddi player's fight to protect a woman.",
+      genres: ["Action", "Romance", "Drama"],
+      duration: "2h 45m",
+      language: "Telugu",
+      year: "2003",
+      director: "Gunasekhar",
+      cast: ["Mahesh Babu", "Bhumika Chawla", "Prakash Raj"]
+    },
+    {
+      id: 67,
+      title: "Bommarillu",
+      rating: 8.0,
+      description: "A young man's journey to find his own identity.",
+      genres: ["Romance", "Family", "Drama"],
+      duration: "2h 35m",
+      language: "Telugu",
+      year: "2006",
+      director: "Bhaskar",
+      cast: ["Siddharth", "Genelia D'Souza", "Prakash Raj"]
+    },
+    {
+      id: 68,
+      title: "Nuvvostanante Nenoddantana",
+      rating: 8.1,
+      description: "A love story between a city boy and a village girl.",
+      genres: ["Romance", "Family", "Drama"],
+      duration: "2h 40m",
+      language: "Telugu",
+      year: "2005",
+      director: "Prabhu Deva",
+      cast: ["Siddharth", "Trisha", "Srihari"]
+    },
+    {
+      id: 69,
+      title: "Murari",
+      rating: 8.5,
+      description: "A family drama with a mysterious curse.",
+      genres: ["Drama", "Family", "Supernatural"],
+      duration: "2h 55m",
+      language: "Telugu",
+      year: "2001",
+      director: "Krishna Vamsi",
+      cast: ["Mahesh Babu", "Sonali Bendre", "Prakash Raj"]
     },
     {
       id: 70,
+      title: "Bimbisara",
+      rating: 7.8,
+      description: "A ruler's journey through time and redemption.",
+      genres: ["Action", "Fantasy", "Drama"],
+      duration: "2h 35m",
+      language: "Telugu",
+      year: "2022",
+      director: "Mallidi Vashist",
+      cast: ["Nandamuri Kalyan Ram", "Catherine Tresa", "Samuthirakani"]
+    },
+    // 71-80
+    {
+      id: 71,
       title: "Zombie Reddy",
       rating: 7.0,
       description: "A horror comedy set in a zombie apocalypse.",
@@ -924,22 +870,7 @@ function App() {
       language: "Telugu",
       year: "2021",
       director: "Prashanth Varma",
-      cast: ["Teja Sajja", "Anandhi", "Daksha Nagarkar"],
-      imdb: "7.0"
-    },
-    // 71-90
-    {
-      id: 71,
-      title: "Solo Brathuke So Better",
-      rating: 7.2,
-      description: "A man's funny journey to prove he's better off single.",
-      genres: ["Comedy", "Romance", "Drama"],
-      duration: "2h 15m",
-      language: "Telugu",
-      year: "2020",
-      director: "Subbu",
-      cast: ["Sai Tej", "Nabha Natesh", "Murali Sharma"],
-      imdb: "7.2"
+      cast: ["Teja Sajja", "Anandhi", "Daksha Nagarkar"]
     },
     {
       id: 72,
@@ -951,102 +882,10 @@ function App() {
       language: "Telugu",
       year: "2021",
       director: "J. K. Bharavi",
-      cast: ["Satyadev Kancharana", "Priyanka Jawalkar", "Sampath Raj"],
-      imdb: "7.5"
+      cast: ["Satyadev Kancharana", "Priyanka Jawalkar", "Sampath Raj"]
     },
     {
       id: 73,
-      title: "Rang De",
-      rating: 7.8,
-      description: "A young man's journey to find his missing friend.",
-      genres: ["Action", "Drama", "Thriller"],
-      duration: "2h 25m",
-      language: "Telugu",
-      year: "2021",
-      director: "Venky Atluri",
-      cast: ["Nithiin", "Keerthy Suresh", "Vennela Kishore"],
-      imdb: "7.8"
-    },
-    {
-      id: 74,
-      title: "The Kashmir Files",
-      rating: 8.5,
-      description: "The story of the Kashmiri Pandits' exodus.",
-      genres: ["Drama", "Historical", "Political"],
-      duration: "2h 50m",
-      language: "Telugu",
-      year: "2022",
-      director: "Vivek Agnihotri",
-      cast: ["Mithun Chakraborty", "Anupam Kher", "Darshan Kumaar"],
-      imdb: "8.5"
-    },
-    {
-      id: 75,
-      title: "Kashmir Files Telugu",
-      rating: 8.4,
-      description: "The Telugu dubbed version of the Kashmiri Pandits' story.",
-      genres: ["Drama", "Historical", "Political"],
-      duration: "2h 50m",
-      language: "Telugu",
-      year: "2022",
-      director: "Vivek Agnihotri",
-      cast: ["Mithun Chakraborty", "Anupam Kher", "Darshan Kumaar"],
-      imdb: "8.4"
-    },
-    {
-      id: 76,
-      title: "Mishan Impossible",
-      rating: 7.0,
-      description: "A fun adventure with three young friends.",
-      genres: ["Comedy", "Adventure", "Family"],
-      duration: "2h 10m",
-      language: "Telugu",
-      year: "2022",
-      director: "Swaroop",
-      cast: ["Dhruv", "Rashmika", "Brahmanandam"],
-      imdb: "7.0"
-    },
-    {
-      id: 77,
-      title: "B.A. B.Sc. B.Com",
-      rating: 7.3,
-      description: "A light-hearted college comedy drama.",
-      genres: ["Comedy", "Drama", "Romance"],
-      duration: "2h 20m",
-      language: "Telugu",
-      year: "2022",
-      director: "Suresh",
-      cast: ["Sumanth", "Kriti", "Srinivas Reddy"],
-      imdb: "7.3"
-    },
-    {
-      id: 78,
-      title: "Krishna Vrinda Vihari",
-      rating: 7.6,
-      description: "A romantic drama with unexpected twists.",
-      genres: ["Romance", "Drama", "Comedy"],
-      duration: "2h 25m",
-      language: "Telugu",
-      year: "2022",
-      director: "Sashi",
-      cast: ["Naga Shaurya", "Shirley Setia", "Sampath Raj"],
-      imdb: "7.6"
-    },
-    {
-      id: 79,
-      title: "Sehari",
-      rating: 7.1,
-      description: "A thriller set in a small town.",
-      genres: ["Thriller", "Crime", "Mystery"],
-      duration: "2h 15m",
-      language: "Telugu",
-      year: "2022",
-      director: "Rahul",
-      cast: ["Varun Tej", "Rashmi", "Prakash Raj"],
-      imdb: "7.1"
-    },
-    {
-      id: 80,
       title: "Aa Ammayi Gurinchi Meeku Cheppali",
       rating: 7.4,
       description: "A love story with a modern twist.",
@@ -1055,25 +894,10 @@ function App() {
       language: "Telugu",
       year: "2022",
       director: "Mohana Krishna Indraganti",
-      cast: ["Sudheer Babu", "Krithi Shetty", "Vijay"],
-      imdb: "7.4"
-    },
-    // 81-100
-    {
-      id: 81,
-      title: "Nandhi",
-      rating: 7.7,
-      description: "A psychological thriller with family drama.",
-      genres: ["Thriller", "Drama", "Crime"],
-      duration: "2h 25m",
-      language: "Telugu",
-      year: "2022",
-      director: "Vijay",
-      cast: ["Sumanth", "Mansi", "Rao Ramesh"],
-      imdb: "7.7"
+      cast: ["Sudheer Babu", "Krithi Shetty", "Vijay"]
     },
     {
-      id: 82,
+      id: 74,
       title: "Ashoka Vanamlo Arjuna Kalyanam",
       rating: 7.3,
       description: "A modern take on love and relationships.",
@@ -1082,11 +906,10 @@ function App() {
       language: "Telugu",
       year: "2022",
       director: "Vidya Sagar",
-      cast: ["Vijay Deverakonda", "Ritu Varma", "Murali Sharma"],
-      imdb: "7.3"
+      cast: ["Vijay Deverakonda", "Ritu Varma", "Murali Sharma"]
     },
     {
-      id: 83,
+      id: 75,
       title: "Macherla Niyojakavargam",
       rating: 7.2,
       description: "A police officer's fight against corruption.",
@@ -1095,11 +918,10 @@ function App() {
       language: "Telugu",
       year: "2022",
       director: "M. S. Raju",
-      cast: ["Nithiin", "Krithi Shetty", "Catherine Tresa"],
-      imdb: "7.2"
+      cast: ["Nithiin", "Krithi Shetty", "Catherine Tresa"]
     },
     {
-      id: 84,
+      id: 76,
       title: "Pakka Commercial",
       rating: 7.0,
       description: "A lawyer's comedic journey through the justice system.",
@@ -1108,50 +930,10 @@ function App() {
       language: "Telugu",
       year: "2022",
       director: "Maruthi",
-      cast: ["Gopichand", "Raashi Khanna", "Sampath Raj"],
-      imdb: "7.0"
+      cast: ["Gopichand", "Raashi Khanna", "Sampath Raj"]
     },
     {
-      id: 85,
-      title: "Haha",
-      rating: 7.1,
-      description: "A feel-good comedy about family and friends.",
-      genres: ["Comedy", "Family", "Drama"],
-      duration: "2h 15m",
-      language: "Telugu",
-      year: "2022",
-      director: "Nandu",
-      cast: ["Sumanth", "Amala", "Vijay"],
-      imdb: "7.1"
-    },
-    {
-      id: 86,
-      title: "Yashoda",
-      rating: 7.8,
-      description: "A woman's fight for justice in a fertility clinic.",
-      genres: ["Thriller", "Crime", "Drama"],
-      duration: "2h 30m",
-      language: "Telugu",
-      year: "2022",
-      director: "Hari Shankar",
-      cast: ["Samantha Ruth Prabhu", "Unni Mukundan", "Rao Ramesh"],
-      imdb: "7.8"
-    },
-    {
-      id: 87,
-      title: "Vendhu Thanindhathu Kaadu",
-      rating: 7.6,
-      description: "A young man's journey from poverty to power.",
-      genres: ["Action", "Drama", "Crime"],
-      duration: "2h 45m",
-      language: "Telugu",
-      year: "2022",
-      director: "Gautham Vasudev Menon",
-      cast: ["Simbu", "Siddhi Idnani", "Raadhika Sarathkumar"],
-      imdb: "7.6"
-    },
-    {
-      id: 88,
+      id: 77,
       title: "DSP",
       rating: 7.5,
       description: "A deputy superintendent's battle against crime.",
@@ -1160,24 +942,10 @@ function App() {
       language: "Telugu",
       year: "2022",
       director: "M. S. Raja",
-      cast: ["Vijay", "Aishwarya", "Suman"],
-      imdb: "7.5"
+      cast: ["Vijay", "Aishwarya", "Suman"]
     },
     {
-      id: 89,
-      title: "Koditheka",
-      rating: 7.0,
-      description: "A village drama with powerful performances.",
-      genres: ["Drama", "Family", "Social"],
-      duration: "2h 20m",
-      language: "Telugu",
-      year: "2023",
-      director: "Suresh",
-      cast: ["Naga Chaitanya", "Samantha", "Prakash Raj"],
-      imdb: "7.0"
-    },
-    {
-      id: 90,
+      id: 78,
       title: "Nijam",
       rating: 7.3,
       description: "A truth-seeker's journey to uncover a conspiracy.",
@@ -1186,11 +954,10 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "Rahul",
-      cast: ["Sumanth", "Anjali", "Murali Sharma"],
-      imdb: "7.3"
+      cast: ["Sumanth", "Anjali", "Murali Sharma"]
     },
     {
-      id: 91,
+      id: 79,
       title: "Rudra",
       rating: 7.4,
       description: "A powerful man's fight against injustice.",
@@ -1199,125 +966,261 @@ function App() {
       language: "Telugu",
       year: "2023",
       director: "Sashi",
-      cast: ["Nandamuri Balakrishna", "Kajal Aggarwal", "Srikanth"],
-      imdb: "7.4"
+      cast: ["Nandamuri Balakrishna", "Kajal Aggarwal", "Srikanth"]
+    },
+    {
+      id: 80,
+      title: "Guntur Kaaram",
+      rating: 7.8,
+      description: "A family drama with political undertones.",
+      genres: ["Action", "Drama", "Political"],
+      duration: "2h 40m",
+      language: "Telugu",
+      year: "2024",
+      director: "Trivikram Srinivas",
+      cast: ["Mahesh Babu", "Sreeleela", "Meenakshi Chaudhary"]
+    },
+    // 81-90
+    {
+      id: 81,
+      title: "Tillu Square",
+      rating: 7.3,
+      description: "A comedy of errors with a confused young man.",
+      genres: ["Comedy", "Romance", "Thriller"],
+      duration: "2h 10m",
+      language: "Telugu",
+      year: "2024",
+      director: "Mallik Ram",
+      cast: ["Siddhu Jonnalagadda", "Anupama Parameswaran", "Murali Sharma"]
+    },
+    {
+      id: 82,
+      title: "Siren",
+      rating: 7.6,
+      description: "A thriller about a serial killer's reign of terror.",
+      genres: ["Thriller", "Crime", "Mystery"],
+      duration: "2h 25m",
+      language: "Telugu",
+      year: "2024",
+      director: "Prashanth",
+      cast: ["Venky", "Rashmika Mandanna", "Naveen Chandra"]
+    },
+    {
+      id: 83,
+      title: "Bhaje Vaayu Vega",
+      rating: 7.2,
+      description: "An action-packed adventure of a misunderstood man.",
+      genres: ["Action", "Adventure", "Drama"],
+      duration: "2h 20m",
+      language: "Telugu",
+      year: "2024",
+      director: "Aravind",
+      cast: ["Saipallavi", "Naga Chaitanya", "Suman"]
+    },
+    {
+      id: 84,
+      title: "Rudrangi",
+      rating: 7.7,
+      description: "A period drama set in medieval India.",
+      genres: ["Historical", "Action", "Drama"],
+      duration: "2h 40m",
+      language: "Telugu",
+      year: "2024",
+      director: "Vijay",
+      cast: ["Nani", "Samantha", "Prakash Raj"]
+    },
+    {
+      id: 85,
+      title: "Love Story (2021)",
+      rating: 8.2,
+      description: "A beautiful love story with social commentary.",
+      genres: ["Romance", "Drama", "Social"],
+      duration: "2h 30m",
+      language: "Telugu",
+      year: "2021",
+      director: "Sekhar Kammula",
+      cast: ["Naga Chaitanya", "Sai Pallavi", "Rajeev Kanakala"]
+    },
+    {
+      id: 86,
+      title: "Alludu Adhurs",
+      rating: 7.5,
+      description: "A young man's comedy-filled journey to win his love.",
+      genres: ["Comedy", "Romance", "Family"],
+      duration: "2h 20m",
+      language: "Telugu",
+      year: "2021",
+      director: "Santosh Srinivas",
+      cast: ["Bellamkonda Sreenivas", "Nabha Natesh", "Anu Emmanuel"]
+    },
+    {
+      id: 87,
+      title: "Naa Saami Ranga",
+      rating: 7.4,
+      description: "A small-town man's journey to protect his honor.",
+      genres: ["Action", "Drama", "Romance"],
+      duration: "2h 25m",
+      language: "Telugu",
+      year: "2024",
+      director: "Mahesh Reddy",
+      cast: ["Nandamuri Balakrishna", "Kajal Aggarwal", "Daggubati Venkatesh"]
+    },
+    {
+      id: 88,
+      title: "Paagal",
+      rating: 7.1,
+      description: "A love story of a man with unique perspectives on life.",
+      genres: ["Romance", "Comedy", "Drama"],
+      duration: "2h 20m",
+      language: "Telugu",
+      year: "2021",
+      director: "Naresh Kuppili",
+      cast: ["Vishwak Sen", "Nivetha Pethuraj", "Simran"]
+    },
+    {
+      id: 89,
+      title: "Gaali Sampath",
+      rating: 7.4,
+      description: "A comedy about a common man's extraordinary journey.",
+      genres: ["Comedy", "Drama", "Family"],
+      duration: "2h 15m",
+      language: "Telugu",
+      year: "2021",
+      director: "Anand Ranga",
+      cast: ["Sumanth", "Nabha Natesh", "Tanusree Dutta"]
+    },
+    {
+      id: 90,
+      title: "Solo Brathuke So Better",
+      rating: 7.2,
+      description: "A man's funny journey to prove he's better off single.",
+      genres: ["Comedy", "Romance", "Drama"],
+      duration: "2h 15m",
+      language: "Telugu",
+      year: "2020",
+      director: "Subbu",
+      cast: ["Sai Tej", "Nabha Natesh", "Murali Sharma"]
+    },
+    // 91-100
+    {
+      id: 91,
+      title: "Mishan Impossible",
+      rating: 7.0,
+      description: "A fun adventure with three young friends.",
+      genres: ["Comedy", "Adventure", "Family"],
+      duration: "2h 10m",
+      language: "Telugu",
+      year: "2022",
+      director: "Swaroop",
+      cast: ["Dhruv", "Rashmika", "Brahmanandam"]
     },
     {
       id: 92,
-      title: "Sitaram",
-      rating: 7.9,
-      description: "A love story set in the 1980s.",
-      genres: ["Romance", "Drama", "Family"],
-      duration: "2h 30m",
+      title: "B.A. B.Sc. B.Com",
+      rating: 7.3,
+      description: "A light-hearted college comedy drama.",
+      genres: ["Comedy", "Drama", "Romance"],
+      duration: "2h 20m",
       language: "Telugu",
       year: "2022",
-      director: "Vijay",
-      cast: ["Dulquer Salmaan", "Mrunal Thakur", "Rashmika Mandanna"],
-      imdb: "7.9"
+      director: "Suresh",
+      cast: ["Sumanth", "Kriti", "Srinivas Reddy"]
     },
     {
       id: 93,
-      title: "Arya 2",
-      rating: 7.7,
-      description: "A story of friendship, love, and jealousy.",
+      title: "Krishna Vrinda Vihari",
+      rating: 7.6,
+      description: "A romantic drama with unexpected twists.",
       genres: ["Romance", "Drama", "Comedy"],
-      duration: "2h 40m",
+      duration: "2h 25m",
       language: "Telugu",
-      year: "2009",
-      director: "Sukumar",
-      cast: ["Allu Arjun", "Navdeep", "Kajal Aggarwal"],
-      imdb: "7.7"
+      year: "2022",
+      director: "Sashi",
+      cast: ["Naga Shaurya", "Shirley Setia", "Sampath Raj"]
     },
     {
       id: 94,
-      title: "Happy Days",
-      rating: 8.2,
-      description: "A college friendship drama with humor and emotions.",
-      genres: ["Comedy", "Drama", "Romance"],
-      duration: "2h 40m",
+      title: "Sehari",
+      rating: 7.1,
+      description: "A thriller set in a small town.",
+      genres: ["Thriller", "Crime", "Mystery"],
+      duration: "2h 15m",
       language: "Telugu",
-      year: "2007",
-      director: "Sekhar Kammula",
-      cast: ["Varun Sandesh", "Tamannaah", "Nikhil"],
-      imdb: "8.2"
+      year: "2022",
+      director: "Rahul",
+      cast: ["Varun Tej", "Rashmi", "Prakash Raj"]
     },
     {
       id: 95,
-      title: "Gabbar Singh",
-      rating: 8.1,
-      description: "A police officer's fight against a corrupt politician.",
-      genres: ["Action", "Comedy", "Drama"],
-      duration: "2h 35m",
+      title: "Nandhi",
+      rating: 7.7,
+      description: "A psychological thriller with family drama.",
+      genres: ["Thriller", "Drama", "Crime"],
+      duration: "2h 25m",
       language: "Telugu",
-      year: "2012",
-      director: "Harish Shankar",
-      cast: ["Pawan Kalyan", "Shruti Haasan", "Abhimanyu Singh"],
-      imdb: "8.1"
+      year: "2022",
+      director: "Vijay",
+      cast: ["Sumanth", "Mansi", "Rao Ramesh"]
     },
     {
       id: 96,
-      title: "Athadu",
-      rating: 8.4,
-      description: "A hired killer's journey to find his true identity.",
-      genres: ["Action", "Thriller", "Drama"],
-      duration: "2h 50m",
+      title: "Koditheka",
+      rating: 7.0,
+      description: "A village drama with powerful performances.",
+      genres: ["Drama", "Family", "Social"],
+      duration: "2h 20m",
       language: "Telugu",
-      year: "2005",
-      director: "Trivikram Srinivas",
-      cast: ["Mahesh Babu", "Trisha", "Prakash Raj"],
-      imdb: "8.4"
+      year: "2023",
+      director: "Suresh",
+      cast: ["Naga Chaitanya", "Samantha", "Prakash Raj"]
     },
     {
       id: 97,
-      title: "Okkadu",
-      rating: 8.3,
-      description: "A kabaddi player's fight to protect a woman.",
-      genres: ["Action", "Romance", "Drama"],
-      duration: "2h 45m",
+      title: "The Kashmir Files (Telugu)",
+      rating: 8.4,
+      description: "The story of the Kashmiri Pandits' exodus.",
+      genres: ["Drama", "Historical", "Political"],
+      duration: "2h 50m",
       language: "Telugu",
-      year: "2003",
-      director: "Gunasekhar",
-      cast: ["Mahesh Babu", "Bhumika Chawla", "Prakash Raj"],
-      imdb: "8.3"
+      year: "2022",
+      director: "Vivek Agnihotri",
+      cast: ["Mithun Chakraborty", "Anupam Kher", "Darshan Kumaar"]
     },
     {
       id: 98,
-      title: "Bommarillu",
-      rating: 8.0,
-      description: "A young man's journey to find his own identity.",
-      genres: ["Romance", "Family", "Drama"],
-      duration: "2h 35m",
+      title: "Vendhu Thanindhathu Kaadu (Telugu)",
+      rating: 7.6,
+      description: "A young man's journey from poverty to power.",
+      genres: ["Action", "Drama", "Crime"],
+      duration: "2h 45m",
       language: "Telugu",
-      year: "2006",
-      director: "Bhaskar",
-      cast: ["Siddharth", "Genelia D'Souza", "Prakash Raj"],
-      imdb: "8.0"
+      year: "2022",
+      director: "Gautham Vasudev Menon",
+      cast: ["Simbu", "Siddhi Idnani", "Raadhika Sarathkumar"]
     },
     {
       id: 99,
-      title: "Nuvvostanante Nenoddantana",
-      rating: 8.1,
-      description: "A love story between a city boy and a village girl.",
-      genres: ["Romance", "Family", "Drama"],
-      duration: "2h 40m",
+      title: "Naa Vakeel Saab",
+      rating: 8.0,
+      description: "A powerful courtroom drama with social commentary.",
+      genres: ["Legal", "Drama", "Thriller"],
+      duration: "2h 45m",
       language: "Telugu",
-      year: "2005",
-      director: "Prabhu Deva",
-      cast: ["Siddharth", "Trisha", "Srihari"],
-      imdb: "8.1"
+      year: "2021",
+      director: "Venu Sriram",
+      cast: ["Pawan Kalyan", "Nivetha Thomas", "Anjali"]
     },
     {
       id: 100,
-      title: "Murari",
-      rating: 8.5,
-      description: "A family drama with a mysterious curse.",
-      genres: ["Drama", "Family", "Supernatural"],
-      duration: "2h 55m",
+      title: "Krack (Telugu)",
+      rating: 7.8,
+      description: "A police officer's battle against a notorious gangster.",
+      genres: ["Action", "Crime", "Drama"],
+      duration: "2h 30m",
       language: "Telugu",
-      year: "2001",
-      director: "Krishna Vamsi",
-      cast: ["Mahesh Babu", "Sonali Bendre", "Prakash Raj"],
-      imdb: "8.5"
+      year: "2021",
+      director: "Gopichand Malineni",
+      cast: ["Ravi Teja", "Shruti Haasan", "Varalaxmi Sarathkumar"]
     }
   ]
 
@@ -1326,6 +1229,14 @@ function App() {
                  'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8',
                  'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8']
   const bookedSeats = ['A3', 'A4', 'B5', 'C7']
+
+  // Get unique genres from all movies
+  const allGenres = ['All', ...new Set(movies.flatMap(movie => movie.genres))].sort()
+
+  // Filter movies based on selected genre
+  const filteredMovies = activeFilter === 'All' 
+    ? movies 
+    : movies.filter(movie => movie.genres.includes(activeFilter))
 
   const handleMovieClick = (movie) => {
     setSelectedMovie(movie)
@@ -1495,83 +1406,69 @@ function App() {
         </div>
       </div>
 
-      {/* Filter Bar */}
+      {/* Genre Filter Bar */}
       <div style={{
         display: 'flex',
-        gap: '0.8rem',
+        gap: '0.6rem',
         flexWrap: 'wrap',
         marginBottom: '2rem',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        padding: '0.5rem'
       }}>
-        <button style={{
-          background: 'linear-gradient(135deg, #ff6b6b, #ee5a24)',
-          color: 'white',
-          border: 'none',
-          padding: '0.5rem 1.5rem',
-          borderRadius: '20px',
-          fontSize: '0.9rem',
-          cursor: 'pointer'
-        }}>All Movies</button>
-        <button style={{
-          background: 'rgba(255, 255, 255, 0.05)',
-          color: '#888',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          padding: '0.5rem 1.5rem',
-          borderRadius: '20px',
-          fontSize: '0.9rem',
-          cursor: 'pointer',
-          transition: '0.3s'
-        }} onMouseEnter={e => { e.target.style.background = 'rgba(255, 107, 107, 0.1)'; e.target.style.color = '#ff6b6b' }} onMouseLeave={e => { e.target.style.background = 'rgba(255, 255, 255, 0.05)'; e.target.style.color = '#888' }}>Action</button>
-        <button style={{
-          background: 'rgba(255, 255, 255, 0.05)',
-          color: '#888',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          padding: '0.5rem 1.5rem',
-          borderRadius: '20px',
-          fontSize: '0.9rem',
-          cursor: 'pointer',
-          transition: '0.3s'
-        }} onMouseEnter={e => { e.target.style.background = 'rgba(255, 107, 107, 0.1)'; e.target.style.color = '#ff6b6b' }} onMouseLeave={e => { e.target.style.background = 'rgba(255, 255, 255, 0.05)'; e.target.style.color = '#888' }}>Drama</button>
-        <button style={{
-          background: 'rgba(255, 255, 255, 0.05)',
-          color: '#888',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          padding: '0.5rem 1.5rem',
-          borderRadius: '20px',
-          fontSize: '0.9rem',
-          cursor: 'pointer',
-          transition: '0.3s'
-        }} onMouseEnter={e => { e.target.style.background = 'rgba(255, 107, 107, 0.1)'; e.target.style.color = '#ff6b6b' }} onMouseLeave={e => { e.target.style.background = 'rgba(255, 255, 255, 0.05)'; e.target.style.color = '#888' }}>Romance</button>
-        <button style={{
-          background: 'rgba(255, 255, 255, 0.05)',
-          color: '#888',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          padding: '0.5rem 1.5rem',
-          borderRadius: '20px',
-          fontSize: '0.9rem',
-          cursor: 'pointer',
-          transition: '0.3s'
-        }} onMouseEnter={e => { e.target.style.background = 'rgba(255, 107, 107, 0.1)'; e.target.style.color = '#ff6b6b' }} onMouseLeave={e => { e.target.style.background = 'rgba(255, 255, 255, 0.05)'; e.target.style.color = '#888' }}>Thriller</button>
-        <button style={{
-          background: 'rgba(255, 255, 255, 0.05)',
-          color: '#888',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          padding: '0.5rem 1.5rem',
-          borderRadius: '20px',
-          fontSize: '0.9rem',
-          cursor: 'pointer',
-          transition: '0.3s'
-        }} onMouseEnter={e => { e.target.style.background = 'rgba(255, 107, 107, 0.1)'; e.target.style.color = '#ff6b6b' }} onMouseLeave={e => { e.target.style.background = 'rgba(255, 255, 255, 0.05)'; e.target.style.color = '#888' }}>Comedy</button>
+        {allGenres.map(genre => (
+          <button
+            key={genre}
+            onClick={() => setActiveFilter(genre)}
+            style={{
+              background: activeFilter === genre 
+                ? 'linear-gradient(135deg, #ff6b6b, #ee5a24)' 
+                : 'rgba(255, 255, 255, 0.05)',
+              color: activeFilter === genre ? 'white' : '#888',
+              border: activeFilter === genre ? 'none' : '1px solid rgba(255, 255, 255, 0.1)',
+              padding: '0.5rem 1.5rem',
+              borderRadius: '20px',
+              fontSize: '0.85rem',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              whiteSpace: 'nowrap'
+            }}
+            onMouseEnter={e => {
+              if (activeFilter !== genre) {
+                e.target.style.background = 'rgba(255, 107, 107, 0.1)'
+                e.target.style.color = '#ff6b6b'
+              }
+            }}
+            onMouseLeave={e => {
+              if (activeFilter !== genre) {
+                e.target.style.background = 'rgba(255, 255, 255, 0.05)'
+                e.target.style.color = '#888'
+              }
+            }}
+          >
+            {genre === 'All' ? '🎯 All Movies' : genre}
+            {activeFilter === genre && ' ✓'}
+          </button>
+        ))}
       </div>
 
-      {/* Movie Grid - Text Only Cards */}
+      {/* Movie Count */}
+      <div style={{
+        textAlign: 'left',
+        marginBottom: '1rem',
+        color: '#888',
+        fontSize: '0.9rem'
+      }}>
+        Showing {filteredMovies.length} movies {activeFilter !== 'All' && `in "${activeFilter}"`}
+      </div>
+
+      {/* Movie Grid */}
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
         gap: '1.5rem',
         marginTop: '1rem'
       }}>
-        {movies.map(movie => (
+        {filteredMovies.map(movie => (
           <div key={movie.id} onClick={() => handleMovieClick(movie)} style={{
             background: 'linear-gradient(145deg, #1a1a1a, #0d0d0d)',
             borderRadius: '16px',
